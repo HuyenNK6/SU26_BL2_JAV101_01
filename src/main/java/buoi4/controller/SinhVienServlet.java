@@ -1,5 +1,7 @@
 package buoi4.controller;
 
+import buoi4.entity.SinhVien;
+import buoi4.service.SinhVienService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -7,6 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "sinhVienServlet", value = {
         "/sinh-vien/get-all", //GET
@@ -18,6 +22,9 @@ import java.io.IOException;
         "/sinh-vien/update" //POST
 })
 public class SinhVienServlet extends HttpServlet {
+    SinhVienService service= new SinhVienService();
+    List<SinhVien> listSV= new ArrayList<>();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String uri = req.getRequestURI();
@@ -35,6 +42,11 @@ public class SinhVienServlet extends HttpServlet {
     }
 
     private void getAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //1. lấy list từ service
+        listSV = service.getAll();
+        //2. set thuộc tính
+        req.setAttribute("listSV",listSV);
+        //3. chuyển sang jsp
         req.getRequestDispatcher("/buoi4/hien-thi.jsp").forward(req,resp);
     }
 

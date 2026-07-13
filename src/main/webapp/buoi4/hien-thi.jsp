@@ -6,11 +6,40 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
     <h1>Danh sách Sinh Viên</h1>
+    <table>
+        <thead>
+            <th>STT</th>
+            <th>Mã SV</th>
+            <th>Họ tên</th>
+            <th>Tuổi</th>
+            <th>Giới tính</th>
+            <th>Địa chỉ</th>
+            <th>Hành động</th>
+        </thead>
+        <tbody>
+            <c:forEach items="${listSV}" var="sv" varStatus="i">
+                <tr>
+                    <td>${i.index+1}</td>
+                    <td>${sv.msv}</td>
+                    <td>${sv.ten}</td>
+                    <td>${sv.tuoi}</td>
+                    <td>${sv.gioiTinh}</td>
+                    <td>${sv.diaChi}</td>
+                    <td>
+                        <a href="#">Detail</a>
+                        <a href="#">Update</a>
+                        <a href="#">Remove</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
 </body>
 </html>
