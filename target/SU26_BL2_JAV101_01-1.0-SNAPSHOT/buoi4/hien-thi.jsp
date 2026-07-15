@@ -13,6 +13,16 @@
 </head>
 <body>
     <h1>Danh sách Sinh Viên</h1>
+    <form action="/sinh-vien/add" method="post">
+        Mã SV: <input type="text" name="msv" value="${sv.msv}"><br>
+        Họ tên: <input type="text" name="ten" value="${sv.ten}"><br>
+        Tuổi: <input type="text" name="tuoi" value="${sv.tuoi}"><br>
+        Giới tính:
+        <input type="radio" name="gioiTinh" value="${sv.gioiTinh}" ${sv.gioiTinh ? "": "checked"}> Nam
+        <input type="radio" name="gioiTinh" value="${sv.gioiTinh}" ${sv.gioiTinh ? "checked": ""}> Nữ<br>
+        Địa chỉ: <input type="text" name="diaChi" value="${sv.diaChi}"><br>
+        <button type="submit">Thêm mới</button>
+    </form>
     <table>
         <thead>
             <th>STT</th>
@@ -33,7 +43,7 @@
                     <td>${sv.gioiTinh}</td>
                     <td>${sv.diaChi}</td>
                     <td>
-                        <a href="#">Detail</a>
+                        <a href="/sinh-vien/detail?msv=${sv.msv}">Detail</a>
                         <a href="#">Update</a>
                         <a href="#">Remove</a>
                     </td>

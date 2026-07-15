@@ -19,7 +19,17 @@ public class SinhVienService {
     public List<SinhVien> getAll(){
         return listSV;
     }
+    public SinhVien getOne(String msv){
+        //gõ nhanh foreach: iter+ tab
+        for (SinhVien sv: listSV ) {
+            if(sv.getMsv().equals(msv)){
+                return sv;
+            }
+        }
+        return null;
+    }
     public void add(SinhVien sv){
         listSV.add(sv);
     }
+
 }
